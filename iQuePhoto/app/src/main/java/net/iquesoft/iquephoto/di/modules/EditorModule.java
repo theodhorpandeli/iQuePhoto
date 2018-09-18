@@ -15,14 +15,14 @@ import net.iquesoft.iquephoto.models.Overlay;
 import net.iquesoft.iquephoto.models.Sticker;
 import net.iquesoft.iquephoto.models.StickersSet;
 import net.iquesoft.iquephoto.models.Tool;
-import net.iquesoft.iquephoto.ui.fragments.ImageAdjustmentFragment;
-import net.iquesoft.iquephoto.ui.fragments.TextFragment;
 import net.iquesoft.iquephoto.ui.fragments.AdjustFragment;
 import net.iquesoft.iquephoto.ui.fragments.DrawingFragment;
 import net.iquesoft.iquephoto.ui.fragments.FiltersFragment;
 import net.iquesoft.iquephoto.ui.fragments.FramesFragment;
+import net.iquesoft.iquephoto.ui.fragments.ImageAdjustmentFragment;
 import net.iquesoft.iquephoto.ui.fragments.OverlaysFragment;
 import net.iquesoft.iquephoto.ui.fragments.StickersSetFragment;
+import net.iquesoft.iquephoto.ui.fragments.TextFragment;
 import net.iquesoft.iquephoto.ui.fragments.TiltShiftFragment;
 import net.iquesoft.iquephoto.ui.fragments.TransformFragment;
 
@@ -43,11 +43,11 @@ public class EditorModule {
     @Provides
     List<Tool> provideTools() {
         return Arrays.asList(
+                new Tool(R.string.frames, R.drawable.ic_frame_white_50dp, new FramesFragment()),
                 new Tool(R.string.filters, R.drawable.ic_filter_white_50dp, FiltersFragment.newInstance()),
                 new Tool(R.string.adjust, R.drawable.ic_adjust_white_50dp, new AdjustFragment()),
                 new Tool(R.string.overlay, R.drawable.ic_overlay_white_50dp, new OverlaysFragment()),
                 new Tool(R.string.stickers, R.drawable.ic_stiker_white_50dp, new StickersSetFragment()),
-                new Tool(R.string.frames, R.drawable.ic_frame_white_50dp, new FramesFragment()),
                 new Tool(R.string.transform, R.drawable.ic_transform_white_50dp, new TransformFragment()),
                 new Tool(R.string.vignette, R.drawable.ic_vignette_white_50dp, ImageAdjustmentFragment.newInstance(VIGNETTE)),
                 new Tool(R.string.tilt_shift, R.drawable.ic_tilt_shift_white_50dp, new TiltShiftFragment()),
@@ -164,7 +164,7 @@ public class EditorModule {
     @Provides
     List<StickersSet> provideStickersSet() {
         return Arrays.asList(
-                new StickersSet(R.string.emoji, R.drawable.s_emoji_02, getEmojiStickers()),
+                new StickersSet(R.string.helens_bio_line, R.drawable.hbl_logo_white, getEmojiStickers()),
                 new StickersSet(R.string.flags, R.drawable.s_flags, getFlagsStickers()),
                 new StickersSet(R.string.christmas, R.drawable.s_christmas_01, getChristmasStickers()),
                 new StickersSet(R.string.valentines_day, R.drawable.s_valentines_day_01, getValentinesDayStickers())
@@ -184,11 +184,9 @@ public class EditorModule {
     @Provides
     List<Frame> provideFrames() {
         return Arrays.asList(
-                new Frame("GRUNGE01", R.drawable.frame_grunge_01),
-                new Frame("GRUNGE02", R.drawable.frame_grunge_02),
-                new Frame("GRUNGE03", R.drawable.frame_grunge_03),
-                new Frame("GRUNGE04", R.drawable.frame_grunge_04),
-                new Frame("HL01", R.drawable.frame_h_01)
+                new Frame("1:1 White", R.drawable.frame_01),
+                new Frame("1:1 Rose", R.drawable.frame_02),
+                new Frame("9:16 White", R.drawable.frame_03)
         );
     }
 
@@ -253,6 +251,9 @@ public class EditorModule {
 
     private List<Sticker> getEmojiStickers() {
         return Arrays.asList(
+                new Sticker(R.drawable.hbl_logo),
+                new Sticker(R.drawable.hbl_logo_1),
+                new Sticker(R.drawable.hbl_logo_white),
                 new Sticker(R.drawable.s_emoji_01),
                 new Sticker(R.drawable.s_emoji_02),
                 new Sticker(R.drawable.s_emoji_03),

@@ -3,7 +3,6 @@ package net.iquesoft.iquephoto.presentation.presenters.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -23,8 +22,14 @@ import net.iquesoft.iquephoto.presentation.views.activity.PreviewView;
 import net.iquesoft.iquephoto.tasks.DecodeScaledImageAsyncTask;
 import net.iquesoft.iquephoto.ui.activities.PreviewActivity;
 
-import static com.isseiaoki.simplecropview.CropImageView.CropMode.*;
-import static net.iquesoft.iquephoto.tasks.DecodeScaledImageAsyncTask.*;
+import static com.isseiaoki.simplecropview.CropImageView.CropMode.FIT_IMAGE;
+import static com.isseiaoki.simplecropview.CropImageView.CropMode.FREE;
+import static com.isseiaoki.simplecropview.CropImageView.CropMode.RATIO_16_9;
+import static com.isseiaoki.simplecropview.CropImageView.CropMode.RATIO_3_4;
+import static com.isseiaoki.simplecropview.CropImageView.CropMode.RATIO_4_3;
+import static com.isseiaoki.simplecropview.CropImageView.CropMode.RATIO_9_16;
+import static com.isseiaoki.simplecropview.CropImageView.CropMode.SQUARE;
+import static net.iquesoft.iquephoto.tasks.DecodeScaledImageAsyncTask.OnProgressListener;
 
 @InjectViewState
 public class PreviewActivityPresenter extends MvpPresenter<PreviewView> {
@@ -57,30 +62,6 @@ public class PreviewActivityPresenter extends MvpPresenter<PreviewView> {
             R.string.crop_16_9
     };
 
-    private CropCallback cropCallback = new CropCallback() {
-        @Override
-        public void onSuccess(Bitmap cropped) {
-
-        }
-
-        @Override
-        public void onError() {
-
-        }
-    };
-
-    private SaveCallback saveCallback = new SaveCallback() {
-        @Override
-        public void onSuccess(Uri outputUri) {
-            getViewState().startEditingImage(outputUri);
-            getViewState().dismissProgress();
-        }
-
-        @Override
-        public void onError() {
-
-        }
-    };
 
     private void initCropModes() {
         for (int i = 0; i < CROP_MODES.length; i++) {
@@ -121,7 +102,28 @@ public class PreviewActivityPresenter extends MvpPresenter<PreviewView> {
 
     public void cropImage(Uri uri, CropImageView cropImageView) {
         getViewState().showProgress();
-        cropImageView.startCrop(uri, cropCallback, saveCallback);
+        cropImageView.startCrop(uri, new CropCallback() {
+            @Override
+            public void onSuccess(Bitmap cropped) {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        }, new SaveCallback() {
+            @Override
+            public void onSuccess(Uri uri) {
+                getViewState().startEditingImage(uri);
+                getViewState().dismissProgress();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        });
     }
 
     public void flipImageHorizontal(Bitmap bitmap) {

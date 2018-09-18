@@ -49,7 +49,7 @@ dependencies {
     compile 'com.google.dagger:dagger:2.8'
     apt 'com.google.dagger:dagger-compiler:2.8'
 
-    compile 'com.isseiaoki:simplecropview:1.1.4'
+    compile 'com.isseiaoki:simplecropview:1.1.8'
     compile 'org.adw.library:discrete-seekbar:1.0.1'
     compile 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar'
     compile 'com.squareup.picasso:picasso:2.5.2'

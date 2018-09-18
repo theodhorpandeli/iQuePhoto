@@ -175,4 +175,5 @@
     <!-- Progress dialog message - END. -->
 
     <string name="transparency">Transparency</string>
+    <string name="helens_bio_line">HelensBioLine</string>
 </resources>
